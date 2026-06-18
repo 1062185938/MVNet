@@ -1,0 +1,3392 @@
+{
+  "dataset": "RadioML2016.10A",
+  "data_path": "data/raw/RML2016.10a_dict.pkl",
+  "split_dir": "data/splits",
+  "seed": 42,
+  "ratios": {
+    "train": 0.6,
+    "val": 0.2,
+    "test": 0.2
+  },
+  "index_policy": {
+    "description": "Global sample_id is assigned by sorted modulation, then sorted SNR, then local sample index within each RadioML array.",
+    "modulation_order": [
+      "8PSK",
+      "AM-DSB",
+      "AM-SSB",
+      "BPSK",
+      "CPFSK",
+      "GFSK",
+      "PAM4",
+      "QAM16",
+      "QAM64",
+      "QPSK",
+      "WBFM"
+    ],
+    "snr_order": [
+      -20,
+      -18,
+      -16,
+      -14,
+      -12,
+      -10,
+      -8,
+      -6,
+      -4,
+      -2,
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      18
+    ]
+  },
+  "num_classes": 11,
+  "class_to_idx": {
+    "8PSK": 0,
+    "AM-DSB": 1,
+    "AM-SSB": 2,
+    "BPSK": 3,
+    "CPFSK": 4,
+    "GFSK": 5,
+    "PAM4": 6,
+    "QAM16": 7,
+    "QAM64": 8,
+    "QPSK": 9,
+    "WBFM": 10
+  },
+  "idx_to_class": {
+    "0": "8PSK",
+    "1": "AM-DSB",
+    "2": "AM-SSB",
+    "3": "BPSK",
+    "4": "CPFSK",
+    "5": "GFSK",
+    "6": "PAM4",
+    "7": "QAM16",
+    "8": "QAM64",
+    "9": "QPSK",
+    "10": "WBFM"
+  },
+  "total_samples": 220000,
+  "split_counts": {
+    "train": 132000,
+    "val": 44000,
+    "test": 44000
+  },
+  "groups": [
+    {
+      "modulation": "8PSK",
+      "snr": -20,
+      "start_index": 0,
+      "end_index": 1000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -18,
+      "start_index": 1000,
+      "end_index": 2000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -16,
+      "start_index": 2000,
+      "end_index": 3000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -14,
+      "start_index": 3000,
+      "end_index": 4000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -12,
+      "start_index": 4000,
+      "end_index": 5000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -10,
+      "start_index": 5000,
+      "end_index": 6000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -8,
+      "start_index": 6000,
+      "end_index": 7000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -6,
+      "start_index": 7000,
+      "end_index": 8000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -4,
+      "start_index": 8000,
+      "end_index": 9000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -2,
+      "start_index": 9000,
+      "end_index": 10000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 0,
+      "start_index": 10000,
+      "end_index": 11000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 2,
+      "start_index": 11000,
+      "end_index": 12000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 4,
+      "start_index": 12000,
+      "end_index": 13000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 6,
+      "start_index": 13000,
+      "end_index": 14000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 8,
+      "start_index": 14000,
+      "end_index": 15000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 10,
+      "start_index": 15000,
+      "end_index": 16000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 12,
+      "start_index": 16000,
+      "end_index": 17000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 14,
+      "start_index": 17000,
+      "end_index": 18000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 16,
+      "start_index": 18000,
+      "end_index": 19000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 18,
+      "start_index": 19000,
+      "end_index": 20000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -20,
+      "start_index": 20000,
+      "end_index": 21000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -18,
+      "start_index": 21000,
+      "end_index": 22000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -16,
+      "start_index": 22000,
+      "end_index": 23000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -14,
+      "start_index": 23000,
+      "end_index": 24000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -12,
+      "start_index": 24000,
+      "end_index": 25000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -10,
+      "start_index": 25000,
+      "end_index": 26000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -8,
+      "start_index": 26000,
+      "end_index": 27000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -6,
+      "start_index": 27000,
+      "end_index": 28000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -4,
+      "start_index": 28000,
+      "end_index": 29000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -2,
+      "start_index": 29000,
+      "end_index": 30000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 0,
+      "start_index": 30000,
+      "end_index": 31000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 2,
+      "start_index": 31000,
+      "end_index": 32000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 4,
+      "start_index": 32000,
+      "end_index": 33000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 6,
+      "start_index": 33000,
+      "end_index": 34000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 8,
+      "start_index": 34000,
+      "end_index": 35000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 10,
+      "start_index": 35000,
+      "end_index": 36000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 12,
+      "start_index": 36000,
+      "end_index": 37000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 14,
+      "start_index": 37000,
+      "end_index": 38000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 16,
+      "start_index": 38000,
+      "end_index": 39000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 18,
+      "start_index": 39000,
+      "end_index": 40000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -20,
+      "start_index": 40000,
+      "end_index": 41000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -18,
+      "start_index": 41000,
+      "end_index": 42000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -16,
+      "start_index": 42000,
+      "end_index": 43000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -14,
+      "start_index": 43000,
+      "end_index": 44000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -12,
+      "start_index": 44000,
+      "end_index": 45000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -10,
+      "start_index": 45000,
+      "end_index": 46000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -8,
+      "start_index": 46000,
+      "end_index": 47000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -6,
+      "start_index": 47000,
+      "end_index": 48000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -4,
+      "start_index": 48000,
+      "end_index": 49000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -2,
+      "start_index": 49000,
+      "end_index": 50000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 0,
+      "start_index": 50000,
+      "end_index": 51000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 2,
+      "start_index": 51000,
+      "end_index": 52000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 4,
+      "start_index": 52000,
+      "end_index": 53000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 6,
+      "start_index": 53000,
+      "end_index": 54000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 8,
+      "start_index": 54000,
+      "end_index": 55000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 10,
+      "start_index": 55000,
+      "end_index": 56000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 12,
+      "start_index": 56000,
+      "end_index": 57000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 14,
+      "start_index": 57000,
+      "end_index": 58000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 16,
+      "start_index": 58000,
+      "end_index": 59000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 18,
+      "start_index": 59000,
+      "end_index": 60000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -20,
+      "start_index": 60000,
+      "end_index": 61000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -18,
+      "start_index": 61000,
+      "end_index": 62000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -16,
+      "start_index": 62000,
+      "end_index": 63000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -14,
+      "start_index": 63000,
+      "end_index": 64000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -12,
+      "start_index": 64000,
+      "end_index": 65000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -10,
+      "start_index": 65000,
+      "end_index": 66000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -8,
+      "start_index": 66000,
+      "end_index": 67000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -6,
+      "start_index": 67000,
+      "end_index": 68000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -4,
+      "start_index": 68000,
+      "end_index": 69000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -2,
+      "start_index": 69000,
+      "end_index": 70000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 0,
+      "start_index": 70000,
+      "end_index": 71000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 2,
+      "start_index": 71000,
+      "end_index": 72000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 4,
+      "start_index": 72000,
+      "end_index": 73000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 6,
+      "start_index": 73000,
+      "end_index": 74000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 8,
+      "start_index": 74000,
+      "end_index": 75000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 10,
+      "start_index": 75000,
+      "end_index": 76000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 12,
+      "start_index": 76000,
+      "end_index": 77000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 14,
+      "start_index": 77000,
+      "end_index": 78000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 16,
+      "start_index": 78000,
+      "end_index": 79000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 18,
+      "start_index": 79000,
+      "end_index": 80000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -20,
+      "start_index": 80000,
+      "end_index": 81000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -18,
+      "start_index": 81000,
+      "end_index": 82000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -16,
+      "start_index": 82000,
+      "end_index": 83000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -14,
+      "start_index": 83000,
+      "end_index": 84000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -12,
+      "start_index": 84000,
+      "end_index": 85000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -10,
+      "start_index": 85000,
+      "end_index": 86000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -8,
+      "start_index": 86000,
+      "end_index": 87000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -6,
+      "start_index": 87000,
+      "end_index": 88000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -4,
+      "start_index": 88000,
+      "end_index": 89000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -2,
+      "start_index": 89000,
+      "end_index": 90000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 0,
+      "start_index": 90000,
+      "end_index": 91000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 2,
+      "start_index": 91000,
+      "end_index": 92000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 4,
+      "start_index": 92000,
+      "end_index": 93000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 6,
+      "start_index": 93000,
+      "end_index": 94000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 8,
+      "start_index": 94000,
+      "end_index": 95000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 10,
+      "start_index": 95000,
+      "end_index": 96000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 12,
+      "start_index": 96000,
+      "end_index": 97000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 14,
+      "start_index": 97000,
+      "end_index": 98000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 16,
+      "start_index": 98000,
+      "end_index": 99000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 18,
+      "start_index": 99000,
+      "end_index": 100000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -20,
+      "start_index": 100000,
+      "end_index": 101000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -18,
+      "start_index": 101000,
+      "end_index": 102000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -16,
+      "start_index": 102000,
+      "end_index": 103000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -14,
+      "start_index": 103000,
+      "end_index": 104000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -12,
+      "start_index": 104000,
+      "end_index": 105000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -10,
+      "start_index": 105000,
+      "end_index": 106000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -8,
+      "start_index": 106000,
+      "end_index": 107000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -6,
+      "start_index": 107000,
+      "end_index": 108000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -4,
+      "start_index": 108000,
+      "end_index": 109000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -2,
+      "start_index": 109000,
+      "end_index": 110000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 0,
+      "start_index": 110000,
+      "end_index": 111000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 2,
+      "start_index": 111000,
+      "end_index": 112000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 4,
+      "start_index": 112000,
+      "end_index": 113000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 6,
+      "start_index": 113000,
+      "end_index": 114000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 8,
+      "start_index": 114000,
+      "end_index": 115000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 10,
+      "start_index": 115000,
+      "end_index": 116000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 12,
+      "start_index": 116000,
+      "end_index": 117000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 14,
+      "start_index": 117000,
+      "end_index": 118000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 16,
+      "start_index": 118000,
+      "end_index": 119000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 18,
+      "start_index": 119000,
+      "end_index": 120000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -20,
+      "start_index": 120000,
+      "end_index": 121000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -18,
+      "start_index": 121000,
+      "end_index": 122000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -16,
+      "start_index": 122000,
+      "end_index": 123000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -14,
+      "start_index": 123000,
+      "end_index": 124000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -12,
+      "start_index": 124000,
+      "end_index": 125000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -10,
+      "start_index": 125000,
+      "end_index": 126000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -8,
+      "start_index": 126000,
+      "end_index": 127000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -6,
+      "start_index": 127000,
+      "end_index": 128000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -4,
+      "start_index": 128000,
+      "end_index": 129000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -2,
+      "start_index": 129000,
+      "end_index": 130000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 0,
+      "start_index": 130000,
+      "end_index": 131000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 2,
+      "start_index": 131000,
+      "end_index": 132000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 4,
+      "start_index": 132000,
+      "end_index": 133000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 6,
+      "start_index": 133000,
+      "end_index": 134000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 8,
+      "start_index": 134000,
+      "end_index": 135000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 10,
+      "start_index": 135000,
+      "end_index": 136000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 12,
+      "start_index": 136000,
+      "end_index": 137000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 14,
+      "start_index": 137000,
+      "end_index": 138000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 16,
+      "start_index": 138000,
+      "end_index": 139000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 18,
+      "start_index": 139000,
+      "end_index": 140000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -20,
+      "start_index": 140000,
+      "end_index": 141000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -18,
+      "start_index": 141000,
+      "end_index": 142000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -16,
+      "start_index": 142000,
+      "end_index": 143000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -14,
+      "start_index": 143000,
+      "end_index": 144000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -12,
+      "start_index": 144000,
+      "end_index": 145000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -10,
+      "start_index": 145000,
+      "end_index": 146000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -8,
+      "start_index": 146000,
+      "end_index": 147000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -6,
+      "start_index": 147000,
+      "end_index": 148000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -4,
+      "start_index": 148000,
+      "end_index": 149000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -2,
+      "start_index": 149000,
+      "end_index": 150000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 0,
+      "start_index": 150000,
+      "end_index": 151000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 2,
+      "start_index": 151000,
+      "end_index": 152000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 4,
+      "start_index": 152000,
+      "end_index": 153000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 6,
+      "start_index": 153000,
+      "end_index": 154000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 8,
+      "start_index": 154000,
+      "end_index": 155000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 10,
+      "start_index": 155000,
+      "end_index": 156000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 12,
+      "start_index": 156000,
+      "end_index": 157000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 14,
+      "start_index": 157000,
+      "end_index": 158000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 16,
+      "start_index": 158000,
+      "end_index": 159000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 18,
+      "start_index": 159000,
+      "end_index": 160000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -20,
+      "start_index": 160000,
+      "end_index": 161000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -18,
+      "start_index": 161000,
+      "end_index": 162000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -16,
+      "start_index": 162000,
+      "end_index": 163000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -14,
+      "start_index": 163000,
+      "end_index": 164000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -12,
+      "start_index": 164000,
+      "end_index": 165000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -10,
+      "start_index": 165000,
+      "end_index": 166000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -8,
+      "start_index": 166000,
+      "end_index": 167000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -6,
+      "start_index": 167000,
+      "end_index": 168000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -4,
+      "start_index": 168000,
+      "end_index": 169000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -2,
+      "start_index": 169000,
+      "end_index": 170000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 0,
+      "start_index": 170000,
+      "end_index": 171000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 2,
+      "start_index": 171000,
+      "end_index": 172000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 4,
+      "start_index": 172000,
+      "end_index": 173000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 6,
+      "start_index": 173000,
+      "end_index": 174000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 8,
+      "start_index": 174000,
+      "end_index": 175000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 10,
+      "start_index": 175000,
+      "end_index": 176000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 12,
+      "start_index": 176000,
+      "end_index": 177000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 14,
+      "start_index": 177000,
+      "end_index": 178000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 16,
+      "start_index": 178000,
+      "end_index": 179000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 18,
+      "start_index": 179000,
+      "end_index": 180000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -20,
+      "start_index": 180000,
+      "end_index": 181000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -18,
+      "start_index": 181000,
+      "end_index": 182000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -16,
+      "start_index": 182000,
+      "end_index": 183000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -14,
+      "start_index": 183000,
+      "end_index": 184000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -12,
+      "start_index": 184000,
+      "end_index": 185000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -10,
+      "start_index": 185000,
+      "end_index": 186000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -8,
+      "start_index": 186000,
+      "end_index": 187000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -6,
+      "start_index": 187000,
+      "end_index": 188000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -4,
+      "start_index": 188000,
+      "end_index": 189000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -2,
+      "start_index": 189000,
+      "end_index": 190000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 0,
+      "start_index": 190000,
+      "end_index": 191000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 2,
+      "start_index": 191000,
+      "end_index": 192000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 4,
+      "start_index": 192000,
+      "end_index": 193000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 6,
+      "start_index": 193000,
+      "end_index": 194000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 8,
+      "start_index": 194000,
+      "end_index": 195000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 10,
+      "start_index": 195000,
+      "end_index": 196000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 12,
+      "start_index": 196000,
+      "end_index": 197000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 14,
+      "start_index": 197000,
+      "end_index": 198000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 16,
+      "start_index": 198000,
+      "end_index": 199000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 18,
+      "start_index": 199000,
+      "end_index": 200000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -20,
+      "start_index": 200000,
+      "end_index": 201000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -18,
+      "start_index": 201000,
+      "end_index": 202000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -16,
+      "start_index": 202000,
+      "end_index": 203000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -14,
+      "start_index": 203000,
+      "end_index": 204000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -12,
+      "start_index": 204000,
+      "end_index": 205000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -10,
+      "start_index": 205000,
+      "end_index": 206000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -8,
+      "start_index": 206000,
+      "end_index": 207000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -6,
+      "start_index": 207000,
+      "end_index": 208000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -4,
+      "start_index": 208000,
+      "end_index": 209000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -2,
+      "start_index": 209000,
+      "end_index": 210000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 0,
+      "start_index": 210000,
+      "end_index": 211000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 2,
+      "start_index": 211000,
+      "end_index": 212000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 4,
+      "start_index": 212000,
+      "end_index": 213000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 6,
+      "start_index": 213000,
+      "end_index": 214000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 8,
+      "start_index": 214000,
+      "end_index": 215000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 10,
+      "start_index": 215000,
+      "end_index": 216000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 12,
+      "start_index": 216000,
+      "end_index": 217000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 14,
+      "start_index": 217000,
+      "end_index": 218000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 16,
+      "start_index": 218000,
+      "end_index": 219000,
+      "num_samples": 1000
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 18,
+      "start_index": 219000,
+      "end_index": 220000,
+      "num_samples": 1000
+    }
+  ],
+  "split_counts_by_group": [
+    {
+      "modulation": "8PSK",
+      "snr": -20,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": -2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 0,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "8PSK",
+      "snr": 18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -20,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": -2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 0,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-DSB",
+      "snr": 18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -20,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": -2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 0,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "AM-SSB",
+      "snr": 18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -20,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": -2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 0,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "BPSK",
+      "snr": 18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -20,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": -2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 0,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "CPFSK",
+      "snr": 18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -20,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": -2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 0,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "GFSK",
+      "snr": 18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -20,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": -2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 0,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "PAM4",
+      "snr": 18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -20,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": -2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 0,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM16",
+      "snr": 18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -20,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": -2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 0,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QAM64",
+      "snr": 18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -20,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": -2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 0,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "QPSK",
+      "snr": 18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -20,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": -2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 0,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 2,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 4,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 6,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 8,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 10,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 12,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 14,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 16,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    {
+      "modulation": "WBFM",
+      "snr": 18,
+      "total": 1000,
+      "train": 600,
+      "val": 200,
+      "test": 200
+    }
+  ],
+  "files": {
+    "train_indices": "train_indices.npy",
+    "val_indices": "val_indices.npy",
+    "test_indices": "test_indices.npy",
+    "split_meta": "split_meta.json"
+  }
+}

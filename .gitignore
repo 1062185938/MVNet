@@ -1,0 +1,16 @@
+# 忽略数据集文件
+data/raw/
+# 忽略训练结果和中间输出
+results/
+checkpoints/
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+# 临时文件 / 编辑器文件
+*.swp
+*.swo
+.vscode/
+# 如果你本地有虚拟环境
+.venv/
+env/

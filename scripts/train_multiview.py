@@ -31,6 +31,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--weight-decay", type=float, default=1e-4)
     parser.add_argument("--dropout", type=float, default=0.3)
     parser.add_argument("--feature-dim", type=int, default=64)
+    parser.add_argument("--structure-alpha", type=float, default=0.2)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--device", choices=("auto", "cuda", "cpu"), default="auto")
     parser.add_argument("--results-dir", type=Path, default=Path("results/multiview/ssg_gate"))
@@ -186,6 +187,7 @@ def main() -> None:
         num_classes=len(train_dataset.class_names),
         dropout=args.dropout,
         fft_shift=args.fft_shift,
+        structure_alpha=args.structure_alpha,
     ).to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)

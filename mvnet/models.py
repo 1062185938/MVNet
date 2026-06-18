@@ -6,7 +6,15 @@ from torch import nn
 from .descriptors import compute_structure_descriptors
 
 
-MODEL_NAMES = ("iq_cnn", "ap_cnn", "fft_cnn", "concat", "vanilla_gate", "ssg_gate")
+MODEL_NAMES = (
+    "iq_cnn",
+    "ap_cnn",
+    "fft_cnn",
+    "concat",
+    "vanilla_gate",
+    "ssg_gate",
+    "ssg_gated_concat",
+)
 
 
 class ConvBranch(nn.Module):
@@ -57,6 +65,15 @@ class ScoreMLP(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.net(x)
+
+
+def zero_init_last_linear(module: nn.Module) -> None:
+    for layer in reversed(list(module.modules())):
+        if isinstance(layer, nn.Linear):
+            nn.init.zeros_(layer.weight)
+            nn.init.zeros_(layer.bias)
+            return
+    raise ValueError("No Linear layer found for zero initialization.")
 
 
 class SingleViewCNN(nn.Module):
@@ -166,19 +183,30 @@ class SignalStructureGuidedGateCNN(VanillaGateCNN):
         num_classes: int = 11,
         dropout: float = 0.3,
         fft_shift: bool = True,
+        structure_alpha: float = 0.2,
     ) -> None:
         super().__init__(feature_dim=feature_dim, num_classes=num_classes, dropout=dropout)
         self.fft_shift = fft_shift
+        self.structure_alpha = structure_alpha
         self.struct_score_iq = ScoreMLP(2, hidden_dim=8)
         self.struct_score_ap = ScoreMLP(3, hidden_dim=12)
         self.struct_score_fft = ScoreMLP(3, hidden_dim=12)
+        zero_init_last_linear(self.struct_score_iq)
+        zero_init_last_linear(self.struct_score_ap)
+        zero_init_last_linear(self.struct_score_fft)
 
     def _scores_with_structure(
         self, features: Dict[str, torch.Tensor], descriptors: Dict[str, torch.Tensor]
     ) -> torch.Tensor:
-        score_iq = self.feat_score_iq(features["iq"]) + self.struct_score_iq(descriptors["iq"])
-        score_ap = self.feat_score_ap(features["ap"]) + self.struct_score_ap(descriptors["ap"])
-        score_fft = self.feat_score_fft(features["fft"]) + self.struct_score_fft(descriptors["fft"])
+        score_iq = self.feat_score_iq(features["iq"]) + self.structure_alpha * self.struct_score_iq(
+            descriptors["iq"]
+        )
+        score_ap = self.feat_score_ap(features["ap"]) + self.structure_alpha * self.struct_score_ap(
+            descriptors["ap"]
+        )
+        score_fft = self.feat_score_fft(
+            features["fft"]
+        ) + self.structure_alpha * self.struct_score_fft(descriptors["fft"])
         return torch.cat([score_iq, score_ap, score_fft], dim=1)
 
     def forward(
@@ -200,12 +228,61 @@ class SignalStructureGuidedGateCNN(VanillaGateCNN):
         return logits
 
 
+class SignalStructureGuidedGatedConcatCNN(SignalStructureGuidedGateCNN):
+    def __init__(
+        self,
+        feature_dim: int = 64,
+        num_classes: int = 11,
+        dropout: float = 0.3,
+        fft_shift: bool = True,
+        structure_alpha: float = 0.2,
+    ) -> None:
+        super().__init__(
+            feature_dim=feature_dim,
+            num_classes=num_classes,
+            dropout=dropout,
+            fft_shift=fft_shift,
+            structure_alpha=structure_alpha,
+        )
+        self.classifier = ClassifierHead(feature_dim * 3, feature_dim, num_classes, dropout)
+
+    @staticmethod
+    def _fuse_gated_concat(features: Dict[str, torch.Tensor], weights: torch.Tensor) -> torch.Tensor:
+        return torch.cat(
+            [
+                weights[:, 0:1] * features["iq"],
+                weights[:, 1:2] * features["ap"],
+                weights[:, 2:3] * features["fft"],
+            ],
+            dim=1,
+        )
+
+    def forward(
+        self, iq: torch.Tensor, ap: torch.Tensor, fft: torch.Tensor, return_aux: bool = False
+    ):
+        features = self._encode(iq, ap, fft)
+        descriptors = compute_structure_descriptors(iq, fft_shift=self.fft_shift)
+        weights = torch.softmax(self._scores_with_structure(features, descriptors), dim=1)
+        z_fused = self._fuse_gated_concat(features, weights)
+        logits = self.classifier(z_fused)
+        if return_aux:
+            return {
+                "logits": logits,
+                "gate_weights": weights,
+                "features": features,
+                "descriptors": descriptors,
+                "fused": z_fused,
+            }
+        return logits
+
+
 def build_model(
     model_name: str,
     feature_dim: int = 64,
     num_classes: int = 11,
     dropout: float = 0.3,
     fft_shift: bool = True,
+    structure_alpha: float = 0.2,
 ) -> nn.Module:
     if model_name == "iq_cnn":
         return SingleViewCNN("iq", feature_dim=feature_dim, num_classes=num_classes, dropout=dropout)
@@ -223,5 +300,14 @@ def build_model(
             num_classes=num_classes,
             dropout=dropout,
             fft_shift=fft_shift,
+            structure_alpha=structure_alpha,
+        )
+    if model_name == "ssg_gated_concat":
+        return SignalStructureGuidedGatedConcatCNN(
+            feature_dim=feature_dim,
+            num_classes=num_classes,
+            dropout=dropout,
+            fft_shift=fft_shift,
+            structure_alpha=structure_alpha,
         )
     raise ValueError(f"Unknown model '{model_name}'. Use one of {MODEL_NAMES}.")

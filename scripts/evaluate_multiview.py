@@ -31,6 +31,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--device", choices=("auto", "cuda", "cpu"), default="auto")
     parser.add_argument("--feature-dim", type=int, default=None)
     parser.add_argument("--dropout", type=float, default=None)
+    parser.add_argument("--structure-alpha", type=float, default=None)
     parser.add_argument("--fft-shift", action=argparse.BooleanOptionalAction, default=None)
     parser.add_argument("--fft-transform", choices=FFT_TRANSFORMS, default=None)
     parser.add_argument("--num-workers", type=int, default=0)
@@ -118,6 +119,11 @@ def main() -> None:
     model_name = args.model or checkpoint.get("model_name") or config_get(ckpt_config, "model", "ssg_gate")
     feature_dim = int(args.feature_dim or config_get(ckpt_config, "feature_dim", 64))
     dropout = float(args.dropout if args.dropout is not None else config_get(ckpt_config, "dropout", 0.3))
+    structure_alpha = float(
+        args.structure_alpha
+        if args.structure_alpha is not None
+        else config_get(ckpt_config, "structure_alpha", 0.2)
+    )
     fft_shift = bool(args.fft_shift if args.fft_shift is not None else config_get(ckpt_config, "fft_shift", True))
     fft_transform = args.fft_transform or config_get(ckpt_config, "fft_transform", "log1p")
 
@@ -150,6 +156,7 @@ def main() -> None:
         num_classes=len(class_names),
         dropout=dropout,
         fft_shift=fft_shift,
+        structure_alpha=structure_alpha,
     ).to(device)
     state_dict = checkpoint["model_state_dict"] if "model_state_dict" in checkpoint else checkpoint
     model.load_state_dict(state_dict)
@@ -247,6 +254,7 @@ def main() -> None:
         "correct": total_correct,
         "feature_dim": feature_dim,
         "dropout": dropout,
+        "structure_alpha": structure_alpha,
         "fft_shift": fft_shift,
         "fft_transform": fft_transform,
         "gate_weights_saved": len(gate_rows) > 0,

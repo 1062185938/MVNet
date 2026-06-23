@@ -17,6 +17,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from mvnet import MODEL_NAMES, RadioML2016Dataset, build_model
+from mvnet.descriptors import STRUCTURE_DESCRIPTOR_DIMS, compute_structure_descriptors
 from mvnet.radioml import FFT_TRANSFORMS
 
 
@@ -102,6 +103,48 @@ def move_batch(batch: Dict[str, torch.Tensor], device: torch.device) -> Dict[str
     return {k: v.to(device, non_blocking=True) if torch.is_tensor(v) else v for k, v in batch.items()}
 
 
+def compute_train_q_stats(
+    loader: DataLoader,
+    device: torch.device,
+    fft_shift: bool,
+) -> Dict[str, Dict[str, torch.Tensor]]:
+    sums = {
+        view: torch.zeros(dim, dtype=torch.float64, device=device)
+        for view, dim in STRUCTURE_DESCRIPTOR_DIMS.items()
+    }
+    squared_sums = {
+        view: torch.zeros(dim, dtype=torch.float64, device=device)
+        for view, dim in STRUCTURE_DESCRIPTOR_DIMS.items()
+    }
+    total_seen = 0
+
+    with torch.no_grad():
+        for batch in loader:
+            iq = batch["iq"].to(device, non_blocking=True)
+            descriptors = compute_structure_descriptors(iq, fft_shift=fft_shift)
+            batch_size = int(iq.shape[0])
+            total_seen += batch_size
+
+            for view, q in descriptors.items():
+                q64 = q.to(dtype=torch.float64)
+                sums[view] += q64.sum(dim=0)
+                squared_sums[view] += q64.pow(2).sum(dim=0)
+
+    if total_seen == 0:
+        raise RuntimeError("Cannot compute q_stats from an empty training dataset.")
+
+    q_stats = {}
+    for view in STRUCTURE_DESCRIPTOR_DIMS:
+        mean = sums[view] / total_seen
+        variance = squared_sums[view] / total_seen - mean.pow(2)
+        std = torch.sqrt(torch.clamp(variance, min=0.0))
+        q_stats[view] = {
+            "mean": mean.detach().cpu().to(dtype=torch.float32),
+            "std": std.detach().cpu().to(dtype=torch.float32),
+        }
+    return q_stats
+
+
 def run_epoch(
     model: nn.Module,
     loader: DataLoader,
@@ -146,6 +189,18 @@ def save_config(args: argparse.Namespace, device: torch.device, results_dir: Pat
     return config
 
 
+def q_stats_for_checkpoint(
+    q_stats: Dict[str, Dict[str, torch.Tensor]]
+) -> Dict[str, Dict[str, torch.Tensor]]:
+    return {
+        view: {
+            "mean": stats["mean"].detach().cpu(),
+            "std": stats["std"].detach().cpu(),
+        }
+        for view, stats in q_stats.items()
+    }
+
+
 def main() -> None:
     args = parse_args()
     seed_everything(args.seed)
@@ -181,6 +236,17 @@ def main() -> None:
         val_dataset, args.batch_size, False, args.num_workers, args.seed + 1, device
     )
 
+    q_stats_loader = make_loader(
+        train_dataset, args.batch_size, False, args.num_workers, args.seed + 2, device
+    )
+    print("Computing train-set q statistics for structure normalization...")
+    q_stats = compute_train_q_stats(q_stats_loader, device=device, fft_shift=args.fft_shift)
+    for view, stats in q_stats.items():
+        print(
+            f"q_stats[{view}] mean={stats['mean'].tolist()} "
+            f"std={stats['std'].tolist()}"
+        )
+
     model = build_model(
         args.model,
         feature_dim=args.feature_dim,
@@ -188,6 +254,7 @@ def main() -> None:
         dropout=args.dropout,
         fft_shift=args.fft_shift,
         structure_alpha=args.structure_alpha,
+        q_stats=q_stats,
     ).to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
@@ -226,6 +293,7 @@ def main() -> None:
                         "model_name": args.model,
                         "model_state_dict": model.state_dict(),
                         "optimizer_state_dict": optimizer.state_dict(),
+                        "q_stats": q_stats_for_checkpoint(q_stats),
                         "best_val_acc": best_val_acc,
                         "config": config,
                         "class_to_idx": train_dataset.class_to_idx,

@@ -3,7 +3,11 @@ from typing import Dict, Optional
 import torch
 from torch import nn
 
-from .descriptors import compute_structure_descriptors
+from .descriptors import (
+    STRUCTURE_DESCRIPTOR_DIMS,
+    compute_structure_descriptors,
+    normalize_structure_descriptors,
+)
 
 
 MODEL_NAMES = (
@@ -184,16 +188,53 @@ class SignalStructureGuidedGateCNN(VanillaGateCNN):
         dropout: float = 0.3,
         fft_shift: bool = True,
         structure_alpha: float = 0.2,
+        q_stats: Optional[Dict[str, Dict[str, torch.Tensor]]] = None,
+        q_norm_eps: float = 1e-8,
     ) -> None:
         super().__init__(feature_dim=feature_dim, num_classes=num_classes, dropout=dropout)
         self.fft_shift = fft_shift
         self.structure_alpha = structure_alpha
+        self.q_norm_eps = q_norm_eps
+        self._register_q_stat_buffers()
+        self.set_q_stats(q_stats)
         self.struct_score_iq = ScoreMLP(2, hidden_dim=8)
         self.struct_score_ap = ScoreMLP(3, hidden_dim=12)
         self.struct_score_fft = ScoreMLP(3, hidden_dim=12)
         zero_init_last_linear(self.struct_score_iq)
         zero_init_last_linear(self.struct_score_ap)
         zero_init_last_linear(self.struct_score_fft)
+
+    def _register_q_stat_buffers(self) -> None:
+        for view, dim in STRUCTURE_DESCRIPTOR_DIMS.items():
+            self.register_buffer(f"q_{view}_mean", torch.zeros(dim), persistent=False)
+            self.register_buffer(f"q_{view}_std", torch.ones(dim), persistent=False)
+
+    def set_q_stats(self, q_stats: Optional[Dict[str, Dict[str, torch.Tensor]]]) -> None:
+        if q_stats is None:
+            q_stats = {
+                view: {
+                    "mean": torch.zeros(dim, dtype=torch.float32),
+                    "std": torch.ones(dim, dtype=torch.float32),
+                }
+                for view, dim in STRUCTURE_DESCRIPTOR_DIMS.items()
+            }
+
+        for view, dim in STRUCTURE_DESCRIPTOR_DIMS.items():
+            mean = torch.as_tensor(q_stats[view]["mean"], dtype=torch.float32)
+            std = torch.as_tensor(q_stats[view]["std"], dtype=torch.float32)
+            if mean.numel() != dim or std.numel() != dim:
+                raise ValueError(f"Expected q_stats['{view}'] to have dimension {dim}.")
+            getattr(self, f"q_{view}_mean").copy_(mean.reshape(dim))
+            getattr(self, f"q_{view}_std").copy_(std.reshape(dim))
+
+    def get_q_stats(self) -> Dict[str, Dict[str, torch.Tensor]]:
+        return {
+            view: {
+                "mean": getattr(self, f"q_{view}_mean"),
+                "std": getattr(self, f"q_{view}_std"),
+            }
+            for view in STRUCTURE_DESCRIPTOR_DIMS
+        }
 
     def _scores_with_structure(
         self, features: Dict[str, torch.Tensor], descriptors: Dict[str, torch.Tensor]
@@ -213,8 +254,11 @@ class SignalStructureGuidedGateCNN(VanillaGateCNN):
         self, iq: torch.Tensor, ap: torch.Tensor, fft: torch.Tensor, return_aux: bool = False
     ):
         features = self._encode(iq, ap, fft)
-        descriptors = compute_structure_descriptors(iq, fft_shift=self.fft_shift)
-        weights = torch.softmax(self._scores_with_structure(features, descriptors), dim=1)
+        descriptors_raw = compute_structure_descriptors(iq, fft_shift=self.fft_shift)
+        descriptors_norm = normalize_structure_descriptors(
+            descriptors_raw, self.get_q_stats(), eps=self.q_norm_eps
+        )
+        weights = torch.softmax(self._scores_with_structure(features, descriptors_norm), dim=1)
         z_fused = self._fuse(features, weights)
         logits = self.classifier(z_fused)
         if return_aux:
@@ -222,7 +266,8 @@ class SignalStructureGuidedGateCNN(VanillaGateCNN):
                 "logits": logits,
                 "gate_weights": weights,
                 "features": features,
-                "descriptors": descriptors,
+                "descriptors": descriptors_raw,
+                "descriptors_norm": descriptors_norm,
                 "fused": z_fused,
             }
         return logits
@@ -236,6 +281,8 @@ class SignalStructureGuidedGatedConcatCNN(SignalStructureGuidedGateCNN):
         dropout: float = 0.3,
         fft_shift: bool = True,
         structure_alpha: float = 0.2,
+        q_stats: Optional[Dict[str, Dict[str, torch.Tensor]]] = None,
+        q_norm_eps: float = 1e-8,
     ) -> None:
         super().__init__(
             feature_dim=feature_dim,
@@ -243,6 +290,8 @@ class SignalStructureGuidedGatedConcatCNN(SignalStructureGuidedGateCNN):
             dropout=dropout,
             fft_shift=fft_shift,
             structure_alpha=structure_alpha,
+            q_stats=q_stats,
+            q_norm_eps=q_norm_eps,
         )
         self.classifier = ClassifierHead(feature_dim * 3, feature_dim, num_classes, dropout)
 
@@ -261,8 +310,11 @@ class SignalStructureGuidedGatedConcatCNN(SignalStructureGuidedGateCNN):
         self, iq: torch.Tensor, ap: torch.Tensor, fft: torch.Tensor, return_aux: bool = False
     ):
         features = self._encode(iq, ap, fft)
-        descriptors = compute_structure_descriptors(iq, fft_shift=self.fft_shift)
-        weights = torch.softmax(self._scores_with_structure(features, descriptors), dim=1)
+        descriptors_raw = compute_structure_descriptors(iq, fft_shift=self.fft_shift)
+        descriptors_norm = normalize_structure_descriptors(
+            descriptors_raw, self.get_q_stats(), eps=self.q_norm_eps
+        )
+        weights = torch.softmax(self._scores_with_structure(features, descriptors_norm), dim=1)
         z_fused = self._fuse_gated_concat(features, weights)
         logits = self.classifier(z_fused)
         if return_aux:
@@ -270,7 +322,8 @@ class SignalStructureGuidedGatedConcatCNN(SignalStructureGuidedGateCNN):
                 "logits": logits,
                 "gate_weights": weights,
                 "features": features,
-                "descriptors": descriptors,
+                "descriptors": descriptors_raw,
+                "descriptors_norm": descriptors_norm,
                 "fused": z_fused,
             }
         return logits
@@ -283,6 +336,8 @@ def build_model(
     dropout: float = 0.3,
     fft_shift: bool = True,
     structure_alpha: float = 0.2,
+    q_stats: Optional[Dict[str, Dict[str, torch.Tensor]]] = None,
+    q_norm_eps: float = 1e-8,
 ) -> nn.Module:
     if model_name == "iq_cnn":
         return SingleViewCNN("iq", feature_dim=feature_dim, num_classes=num_classes, dropout=dropout)
@@ -301,6 +356,8 @@ def build_model(
             dropout=dropout,
             fft_shift=fft_shift,
             structure_alpha=structure_alpha,
+            q_stats=q_stats,
+            q_norm_eps=q_norm_eps,
         )
     if model_name == "ssg_gated_concat":
         return SignalStructureGuidedGatedConcatCNN(
@@ -309,5 +366,7 @@ def build_model(
             dropout=dropout,
             fft_shift=fft_shift,
             structure_alpha=structure_alpha,
+            q_stats=q_stats,
+            q_norm_eps=q_norm_eps,
         )
     raise ValueError(f"Unknown model '{model_name}'. Use one of {MODEL_NAMES}.")

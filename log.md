@@ -39,3 +39,18 @@
   - `ssg_gated_concat` 前向检查通过，输出 logits shape 为 `[B, 11]`，gate weights shape 为 `[B, 3]`，融合特征 shape 为 `[B, 192]`。
   - 确认结构分支最后一层权重和 bias 初始值为 0。
   - 使用 CPU 极小样本完成 `ssg_gated_concat` 训练入口冒烟测试。
+
+## 2026-06-23
+
+- 实现 training-set statistics based q normalization，用于 SSG gate 的 structure branch。
+- 在 `descriptors.py` 中新增 `normalize_structure_descriptors()`，按维度执行 `(q_raw - q_mean_train) / (q_std_train + eps)`，并支持 GPU tensor。
+- 在训练脚本中新增 train split q_stats 计算流程：正式训练开始前遍历 training dataset，统计 `q_iq`、`q_ap`、`q_fft` 每个维度的 mean 和 std。
+- 修改 `SignalStructureGuidedGateCNN` 和 `SignalStructureGuidedGatedConcatCNN`：forward 中先计算 raw descriptors，再使用 train-set q_stats normalization，最后将归一化后的 q 输入 structure branch。
+- 修改 checkpoint 保存内容，新增 `q_stats` 字段，包含 IQ/AP/FFT 三组 descriptor 的 mean/std。
+- 修改评估脚本：评估时从 checkpoint 恢复 q_stats，并用于 val/test 的 q normalization；SSG 模型如果 checkpoint 中缺少 q_stats 会直接报错。
+- 完成 CPU 小样本验证：
+  - `python -m compileall mvnet scripts` 通过。
+  - `ssg_gate` 小样本训练前成功计算 train-set q_stats，并保存到 checkpoint。
+  - checkpoint 中确认包含 `model_state_dict`、`optimizer_state_dict` 和 `q_stats`。
+  - `evaluate_multiview.py` 成功从 checkpoint 恢复 q_stats 并完成 val split 评估。
+  - `ssg_gated_concat` 前向检查通过，确认同样使用归一化后的 descriptors。

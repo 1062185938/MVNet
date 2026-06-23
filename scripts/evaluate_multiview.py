@@ -117,6 +117,12 @@ def main() -> None:
     ckpt_config = checkpoint.get("config", {}) if isinstance(checkpoint, dict) else {}
 
     model_name = args.model or checkpoint.get("model_name") or config_get(ckpt_config, "model", "ssg_gate")
+    q_stats = checkpoint.get("q_stats")
+    if model_name in ("ssg_gate", "ssg_gated_concat") and q_stats is None:
+        raise RuntimeError(
+            "This checkpoint does not contain q_stats. "
+            "SSG models must be evaluated with train-set q statistics saved in the checkpoint."
+        )
     feature_dim = int(args.feature_dim or config_get(ckpt_config, "feature_dim", 64))
     dropout = float(args.dropout if args.dropout is not None else config_get(ckpt_config, "dropout", 0.3))
     structure_alpha = float(
@@ -157,6 +163,7 @@ def main() -> None:
         dropout=dropout,
         fft_shift=fft_shift,
         structure_alpha=structure_alpha,
+        q_stats=q_stats,
     ).to(device)
     state_dict = checkpoint["model_state_dict"] if "model_state_dict" in checkpoint else checkpoint
     model.load_state_dict(state_dict)
@@ -257,6 +264,7 @@ def main() -> None:
         "structure_alpha": structure_alpha,
         "fft_shift": fft_shift,
         "fft_transform": fft_transform,
+        "q_stats_loaded": q_stats is not None,
         "gate_weights_saved": len(gate_rows) > 0,
         "class_names": class_names,
     }

@@ -4,6 +4,9 @@ from typing import Dict
 import torch
 
 
+STRUCTURE_DESCRIPTOR_DIMS = {"iq": 2, "ap": 3, "fft": 3}
+
+
 def _complex_from_iq(iq: torch.Tensor) -> torch.Tensor:
     if iq.ndim != 3 or iq.shape[1] != 2:
         raise ValueError(f"Expected IQ tensor shape [B, 2, N], got {tuple(iq.shape)}.")
@@ -70,3 +73,16 @@ def compute_structure_descriptors(
         "ap": ap_descriptors(iq, eps=eps),
         "fft": fft_descriptors(iq, fft_shift=fft_shift, eps=eps),
     }
+
+
+def normalize_structure_descriptors(
+    descriptors: Dict[str, torch.Tensor],
+    q_stats: Dict[str, Dict[str, torch.Tensor]],
+    eps: float = 1e-8,
+) -> Dict[str, torch.Tensor]:
+    normalized = {}
+    for view, q_raw in descriptors.items():
+        mean = torch.as_tensor(q_stats[view]["mean"], device=q_raw.device, dtype=q_raw.dtype)
+        std = torch.as_tensor(q_stats[view]["std"], device=q_raw.device, dtype=q_raw.dtype)
+        normalized[view] = (q_raw - mean) / (std + eps)
+    return normalized
